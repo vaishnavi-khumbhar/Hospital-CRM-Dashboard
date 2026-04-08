@@ -1,0 +1,254 @@
+/* ===== GLOBAL ===== */
+body {
+  background: linear-gradient(to right, #eef2ff, #f8fafc);
+  font-family: "Poppins", sans-serif;
+}
+
+/* ===== ANIMATION ===== */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-page {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+/* ===== NAVBAR ===== */
+.navbar-custom {
+  height: 70px;
+  background: linear-gradient(90deg, #6366f1, #06b6d4);
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.nav-left {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.logo {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+}
+
+.menu-btn {
+  font-size: 20px;
+  border: none;
+  background: white;
+  border-radius: 6px;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+/* ===== SIDEBAR (MODERN UI) ===== */
+.sidebar {
+  width: 250px;
+  height: 100vh;
+  background: #0f172a;
+  color: white;
+  position: fixed;
+  top: 0;
+  left: -250px;
+  padding: 15px;
+  transition: all 0.3s ease;
+  z-index: 1001;
+}
+
+.sidebar.open {
+  left: 0;
+}
+
+/* Sidebar Header */
+.sidebar-header {
+  padding: 15px 10px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+/* Menu */
+.sidebar-menu {
+  margin-top: 10px;
+}
+
+/* Section Title */
+.sidebar-section {
+  font-size: 11px;
+  color: #94a3b8;
+  margin: 15px 0 5px;
+  padding-left: 8px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Menu Item */
+.sidebar-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  margin: 5px 0;
+  border-radius: 8px;
+  cursor: pointer;
+  color: #e2e8f0;
+  transition: all 0.3s ease;
+}
+
+/* Icon */
+.sidebar-item .icon {
+  font-size: 16px;
+  transition: 0.3s;
+}
+
+/* Text */
+.item-text {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+/* Hover */
+.sidebar-item:hover {
+  background: rgba(99, 102, 241, 0.2);
+  transform: translateX(5px);
+}
+
+.sidebar-item:hover .icon {
+  transform: scale(1.2);
+  color: #6366f1;
+}
+
+/* Active */
+.sidebar-item.active {
+  background: linear-gradient(90deg, #6366f1, #06b6d4);
+  color: white;
+  box-shadow: 0 4px 15px rgba(99,102,241,0.4);
+}
+
+.sidebar-item.active .icon {
+  color: white;
+}
+
+/* ===== MAIN CONTENT ===== */
+.main-content {
+  margin-left: 0;
+  transition: all 0.3s ease;
+}
+
+/* Desktop */
+@media (min-width: 768px) {
+  .sidebar {
+    left: 0;
+  }
+
+  .main-content {
+    margin-left: 250px;
+  }
+}
+
+/* ===== OVERLAY ===== */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  z-index: 1000;
+}
+
+/* ===== CARDS ===== */
+.card {
+  border: none;
+  border-radius: 15px;
+  transition: 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+/* ===== BUTTONS ===== */
+.btn {
+  border-radius: 10px;
+  transition: 0.3s;
+}
+
+.btn:hover {
+  transform: scale(1.05);
+}
+
+/* ===== TABLE ===== */
+.table {
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+/* ===== STATUS ===== */
+.status {
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  color: white;
+}
+
+.status.recovered {
+  background: #22c55e;
+}
+
+.status.critical {
+  background: #ef4444;
+}
+
+.status.treatment {
+  background: #f59e0b;
+}
+
+/* ===== LOGIN ===== */
+.login-bg {
+  background: linear-gradient(120deg, #63a1f1, #154a53);
+}
+
+.login-card {
+  width: 360px;
+  border-radius: 15px;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(12px);
+}
+
+.input-icon {
+  position: absolute;
+  top: 50%;
+  left: 12px;
+  transform: translateY(-50%);
+  color: #333;
+}
+
+.input-field {
+  padding-left: 40px !important;
+  border-radius: 10px;
+  height: 45px;
+}
+
+.btn-login {
+  background: linear-gradient(90deg, #d42dd4, #dd9eda);
+  border: none;
+  color: white;
+  font-weight: bold;
+}
