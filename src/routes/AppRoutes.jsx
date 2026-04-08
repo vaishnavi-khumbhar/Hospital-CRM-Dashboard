@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+import { HashRouter, Routes, Route, useLocation, Navigate } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 
 import Layout from "../components/Layout";
@@ -33,8 +33,8 @@ function AnimatedRoutes() {
     <AnimatePresence mode="wait">
       <Routes location={location} key={location.pathname}>
         
-        {/* Login WITHOUT layout */}
-        <Route path="/" element={<Login />} />
+        {/* 🔥 FIX: Redirect root */}
+        <Route path="/" element={<Navigate to="/dashboard" />} />
 
         {/* WITH Layout */}
         <Route path="/dashboard" element={<Layout><PageWrapper><Dashboard /></PageWrapper></Layout>} />
@@ -47,6 +47,9 @@ function AnimatedRoutes() {
         <Route path="/reports" element={<Layout><PageWrapper><Reports /></PageWrapper></Layout>} />
         <Route path="/settings" element={<Layout><PageWrapper><Settings /></PageWrapper></Layout>} />
 
+        {/* Optional fallback */}
+        <Route path="*" element={<Navigate to="/dashboard" />} />
+
       </Routes>
     </AnimatePresence>
   );
@@ -54,8 +57,8 @@ function AnimatedRoutes() {
 
 export default function AppRoutes() {
   return (
-    <BrowserRouter>
+    <HashRouter>
       <AnimatedRoutes />
-    </BrowserRouter>
+    </HashRouter>
   );
 }
