@@ -13,6 +13,15 @@ import Reports from "../pages/Reports";
 import Settings from "../pages/Settings";
 import PatientDetails from "../pages/PatientDetails";
 
+
+// ✅ Protected Route
+const ProtectedRoute = ({ children }) => {
+  const isAuth = localStorage.getItem("auth") === "true";
+  return isAuth ? children : <Navigate to="/" />;
+};
+
+
+// ✅ Animation Wrapper
 function PageWrapper({ children }) {
   return (
     <motion.div
@@ -26,34 +35,107 @@ function PageWrapper({ children }) {
   );
 }
 
+
 function AnimatedRoutes() {
   const location = useLocation();
 
   return (
     <AnimatePresence mode="wait">
       <Routes location={location} key={location.pathname}>
-        
-        {/* 🔥 FIX: Redirect root */}
-        <Route path="/" element={<Navigate to="/dashboard" />} />
 
-        {/* WITH Layout */}
-        <Route path="/dashboard" element={<Layout><PageWrapper><Dashboard /></PageWrapper></Layout>} />
-        <Route path="/patients" element={<Layout><PageWrapper><Patients /></PageWrapper></Layout>} />
-        <Route path="/patient/:id" element={<Layout><PageWrapper><PatientDetails /></PageWrapper></Layout>} />
-        <Route path="/doctors" element={<Layout><PageWrapper><Doctors /></PageWrapper></Layout>} />
-        <Route path="/appointments" element={<Layout><PageWrapper><Appointments /></PageWrapper></Layout>} />
-        <Route path="/billing" element={<Layout><PageWrapper><Billing /></PageWrapper></Layout>} />
-        <Route path="/pharmacy" element={<Layout><PageWrapper><Pharmacy /></PageWrapper></Layout>} />
-        <Route path="/reports" element={<Layout><PageWrapper><Reports /></PageWrapper></Layout>} />
-        <Route path="/settings" element={<Layout><PageWrapper><Settings /></PageWrapper></Layout>} />
+        {/* ✅ LOGIN PAGE */}
+        <Route path="/" element={<Login />} />
 
-        {/* Optional fallback */}
-        <Route path="*" element={<Navigate to="/dashboard" />} />
+        {/* ✅ PROTECTED ROUTES */}
+        <Route
+          path="/dashboard"
+          element={
+            <ProtectedRoute>
+              <Layout><PageWrapper><Dashboard /></PageWrapper></Layout>
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/patients"
+          element={
+            <ProtectedRoute>
+              <Layout><PageWrapper><Patients /></PageWrapper></Layout>
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/patient/:id"
+          element={
+            <ProtectedRoute>
+              <Layout><PageWrapper><PatientDetails /></PageWrapper></Layout>
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/doctors"
+          element={
+            <ProtectedRoute>
+              <Layout><PageWrapper><Doctors /></PageWrapper></Layout>
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/appointments"
+          element={
+            <ProtectedRoute>
+              <Layout><PageWrapper><Appointments /></PageWrapper></Layout>
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/billing"
+          element={
+            <ProtectedRoute>
+              <Layout><PageWrapper><Billing /></PageWrapper></Layout>
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/pharmacy"
+          element={
+            <ProtectedRoute>
+              <Layout><PageWrapper><Pharmacy /></PageWrapper></Layout>
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/reports"
+          element={
+            <ProtectedRoute>
+              <Layout><PageWrapper><Reports /></PageWrapper></Layout>
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/settings"
+          element={
+            <ProtectedRoute>
+              <Layout><PageWrapper><Settings /></PageWrapper></Layout>
+            </ProtectedRoute>
+          }
+        />
+
+        {/* ✅ FALLBACK */}
+        <Route path="*" element={<Navigate to="/" />} />
 
       </Routes>
     </AnimatePresence>
   );
 }
+
 
 export default function AppRoutes() {
   return (

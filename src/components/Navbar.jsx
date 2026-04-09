@@ -37,12 +37,16 @@ function Navbar({ toggleSidebar }) {
       document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
+  // ✅ FIXED LOGOUT FUNCTION
+  const handleLogout = () => {
+    localStorage.removeItem("auth"); // 🔥 clear login state
+    navigate("/"); // redirect to login
+  };
+
   return (
     <nav className="navbar-custom">
       {/* LEFT */}
       <div className="nav-left">
-        
-        {/* ☰ Toggle (Mobile) */}
         <button className="menu-btn d-md-none" onClick={toggleSidebar}>
           ☰
         </button>
@@ -94,13 +98,8 @@ function Navbar({ toggleSidebar }) {
               <FaUser /> My Profile
             </div>
 
-            <div
-              className="text-danger"
-              onClick={() => {
-                alert("Logged out!");
-                navigate("/");
-              }}
-            >
+            {/* ✅ UPDATED LOGOUT */}
+            <div className="text-danger" onClick={handleLogout}>
               <FaSignOutAlt /> Logout
             </div>
           </div>
